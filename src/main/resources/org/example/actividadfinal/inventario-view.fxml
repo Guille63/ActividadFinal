@@ -8,17 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividadfinal.InventarioController">
    <children>
-      <ListView fx:id="lvDispositivos" layoutX="14.0" layoutY="14.0" prefHeight="374.0" prefWidth="219.0" />
+      <ListView fx:id="lvDispositivos" layoutX="14.0" layoutY="14.0" onMouseClicked="#onDispositivoClicked" prefHeight="374.0" prefWidth="219.0" />
       <Label layoutX="286.0" layoutY="67.0" text="Fecha compra" />
       <Label layoutX="286.0" layoutY="110.0" text="Precio" />
       <Label layoutX="286.0" layoutY="160.0" text="Tipo de dispositivo" />
       <Label layoutX="286.0" layoutY="204.0" text="Marca" />
       <Label layoutX="286.0" layoutY="248.0" text="Modelo" />
-      <Label fx:id="labelFecha" layoutX="411.0" layoutY="67.0" text="Label" />
-      <Label fx:id="labelPrecio" layoutX="411.0" layoutY="110.0" text="Label" />
-      <Label fx:id="labelTipoDispositivo" layoutX="411.0" layoutY="160.0" text="Label" />
-      <Label fx:id="labelMarca" layoutX="411.0" layoutY="204.0" text="Label" />
-      <Label fx:id="labelModelo" layoutX="411.0" layoutY="248.0" text="Label" />
+      <Label fx:id="labelFecha" layoutX="411.0" layoutY="67.0" />
+      <Label fx:id="labelPrecio" layoutX="411.0" layoutY="110.0" />
+      <Label fx:id="labelTipoDispositivo" layoutX="411.0" layoutY="160.0" />
+      <Label fx:id="labelMarca" layoutX="411.0" layoutY="204.0" />
+      <Label fx:id="labelModelo" layoutX="411.0" layoutY="248.0" />
       <Button fx:id="bt_AddEdit" layoutX="337.0" layoutY="341.0" mnemonicParsing="false" onAction="#ontAddEditClick" text="Add/Edit" />
       <Button layoutX="432.0" layoutY="341.0" mnemonicParsing="false" onAction="#onImprimirButtonClick" text="Imprimir" />
       <Button fx:id="bt_Ordenar" layoutX="520.0" layoutY="341.0" mnemonicParsing="false" onAction="#onOrdenarButtonClick" text="Ordenar" />

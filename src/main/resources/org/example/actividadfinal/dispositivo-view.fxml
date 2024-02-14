@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="361.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="361.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividadfinal.DispositivoController">
    <children>
       <Label layoutX="48.0" layoutY="30.0" text="Fecha de compra" />
       <Label layoutX="48.0" layoutY="73.0" text="Precio" />
       <Label layoutX="48.0" layoutY="203.0" text="Modelo" />
       <Label layoutX="48.0" layoutY="118.0" text="Tipo de dispositivo" />
       <Label layoutX="48.0" layoutY="165.0" text="Marca" />
-      <TextField layoutX="153.0" layoutY="69.0" />
-      <TextField layoutX="153.0" layoutY="153.0" />
-      <TextField layoutX="153.0" layoutY="199.0" />
-      <ComboBox layoutX="152.0" layoutY="114.0" prefWidth="150.0" />
-      <DatePicker layoutX="152.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button layoutX="125.0" layoutY="254.0" mnemonicParsing="false" text="Alta Dispositivo" />
+      <TextField fx:id="tfPrecio" layoutX="153.0" layoutY="69.0" />
+      <TextField fx:id="tfMarca" layoutX="153.0" layoutY="153.0" />
+      <TextField fx:id="tfModelo" layoutX="153.0" layoutY="199.0" />
+      <ComboBox fx:id="cbTipoDispositivo" layoutX="152.0" layoutY="114.0" prefWidth="150.0" />
+      <DatePicker fx:id="datePicker" layoutX="152.0" layoutY="26.0" prefHeight="25.0" prefWidth="150.0" />
+      <Button fx:id="bt_Alta" layoutX="95.0" layoutY="253.0" mnemonicParsing="false" onAction="#onAltaModificacionClick" text="Alta/Modificacion Dispositivo" />
    </children>
 </AnchorPane>
