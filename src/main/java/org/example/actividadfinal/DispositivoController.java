@@ -13,7 +13,7 @@ public class DispositivoController {
     private Button bt_Alta;
 
     @FXML
-    private ComboBox<?> cbTipoDispositivo;
+    private ComboBox<TipoAtributo> cbTipoDispositivo;
 
     @FXML
     private DatePicker datePicker;
@@ -30,6 +30,11 @@ public class DispositivoController {
     @FXML
     void onAltaModificacionClick(ActionEvent event) {
 
+    }
+
+    @FXML
+    void initialize() {
+        cbTipoDispositivo.getItems().setAll(TipoAtributo.values());
     }
 
 }
