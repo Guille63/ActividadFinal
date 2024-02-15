@@ -1,18 +1,26 @@
 package org.example.actividadfinal;
 
+import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.actividadfinal.models.Dispositivo;
+import org.example.actividadfinal.utils.Alerta;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 public class InventarioController {
 
@@ -67,6 +75,20 @@ public class InventarioController {
     @FXML
     void onImprimirButtonClick(ActionEvent event) {
 
+        if (!lvDispositivos.getItems().isEmpty()) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("files/inventario.txt"))) {
+                for (Dispositivo dispositivo : lvDispositivos.getItems()) {
+                    bw.write(dispositivo.toString());
+                    bw.newLine();
+                }
+                Alerta.mostrarAlerta("Inventario impreso", null, "El inventario se ha impreso correctamente", Alert.AlertType.INFORMATION);
+
+            } catch (Exception e) {
+                Alerta.mostrarAlerta("Error", null, "Ha ocurrido un error al imprimir el inventario", Alert.AlertType.ERROR);
+            }
+        } else {
+            Alerta.mostrarAlerta("Inventario vacío", null, "No hay dispositivos en el inventario", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -110,7 +132,7 @@ public class InventarioController {
 
     }
 
-    public void limpiar(){
+    public void limpiar() {
         lvDispositivos.getSelectionModel().clearSelection();
         labelFecha.setText("");
         labelMarca.setText("");

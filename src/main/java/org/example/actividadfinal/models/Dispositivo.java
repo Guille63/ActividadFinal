@@ -88,13 +88,6 @@ public class Dispositivo {
 
     @Override
     public String toString() {
-        return "Dispositivo{" +
-                "id='" + id + '\'' +
-                ", fechaCompra=" + fechaCompra +
-                ", precio=" + precio +
-                ", tipoAtributo=" + tipoAtributo +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                '}';
+        return id + ": " + tipoAtributo + ", " + marca + ", " + modelo + ", " + fechaCompra + ", " + precio + "€";
     }
 }
