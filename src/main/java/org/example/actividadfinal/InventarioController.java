@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -93,7 +90,31 @@ public class InventarioController {
 
     @FXML
     void onOrdenarButtonClick(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Ordenar");
+        dialog.setHeaderText("Ordenar por:");
+        dialog.setContentText("1: Fecha\n\n2: Precio\n\n3: Marca");
+        dialog.showAndWait().ifPresent(tipoOrdenacion -> {
+            if (tipoOrdenacion.equals("1") || tipoOrdenacion.equals("2") || tipoOrdenacion.equals("3")) {
+                ordenarPor(Integer.parseInt(tipoOrdenacion));
+            } else {
+                Alerta.mostrarAlerta("Error", null, "El valor introducido no es válido", Alert.AlertType.ERROR);
+            }
+        });
+    }
 
+    public void ordenarPor(int tipoOrdenacion) {
+        if (lvDispositivos.getItems().isEmpty()) {
+            Alerta.mostrarAlerta("Inventario vacío", null, "No hay dispositivos en el inventario", Alert.AlertType.WARNING);
+        } else {
+            if (tipoOrdenacion == 1) {
+                lvDispositivos.getItems().sort(Dispositivo::compareFecha);
+            } else if (tipoOrdenacion == 2) {
+                lvDispositivos.getItems().sort(Dispositivo::comparePrecio);
+            } else if (tipoOrdenacion == 3) {
+                lvDispositivos.getItems().sort(Dispositivo::compareMarca);
+            }
+        }
     }
 
     @FXML

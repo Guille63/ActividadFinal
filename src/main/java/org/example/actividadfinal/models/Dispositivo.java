@@ -90,4 +90,17 @@ public class Dispositivo {
     public String toString() {
         return id + ": " + tipoAtributo + ", " + marca + ", " + modelo + ", " + fechaCompra + ", " + precio + "€";
     }
+
+
+    public int compareFecha(Dispositivo dispositivo) {
+        return this.fechaCompra.compareTo(dispositivo.getFechaCompra());
+    }
+
+    public int comparePrecio(Dispositivo dispositivo) {
+        return this.precio - dispositivo.getPrecio();
+    }
+
+    public int compareMarca(Dispositivo dispositivo) {
+        return this.marca.compareTo(dispositivo.getMarca());
+    }
 }
