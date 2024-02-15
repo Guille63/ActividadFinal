@@ -2,10 +2,7 @@ package org.example.actividadfinal;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.example.actividadfinal.models.Dispositivo;
 
 public class DispositivoController {
@@ -41,41 +38,53 @@ public class DispositivoController {
 
     @FXML
     void onAltaModificacionClick(ActionEvent event) {
-        //Se recogen los datos de los campos y se crea un nuevo dispositivo
+        // Verificar si los campos están vacíos
+        if (tfMarca.getText() == null || tfMarca.getText().isEmpty() ||
+                tfModelo.getText() == null || tfModelo.getText().isEmpty() ||
+                tfPrecio.getText() == null || tfPrecio.getText().isEmpty() ||
+                datePicker.getValue() == null || cbTipoDispositivo.getValue() == null) {
 
-        Dispositivo dispositivo;
-        if(tfMarca.getText().isEmpty() || tfModelo.getText().isEmpty() || tfPrecio.getText().isEmpty() || datePicker.getValue() == null || cbTipoDispositivo.getValue() == null) {
-            dispositivo = new Dispositivo();
-            dispositivo.setMarca(tfMarca.getText());
-            dispositivo.setModelo(tfModelo.getText());
-            dispositivo.setPrecio(Integer.parseInt(tfPrecio.getText()));
-            dispositivo.setFechaCompra(datePicker.getValue());
-            dispositivo.setTipoAtributo(cbTipoDispositivo.getValue());
-            if(dispositivo.getId() == null) {
-                dispositivo.setId(String.valueOf(inventarioController.getListaDispositivos().size() + 1));
-            }
+            // Mostrar una alerta al usuario
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Campos vacíos");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, rellena todos los campos antes de continuar.");
+            alert.showAndWait();
+
         } else {
-            //actualizar dispositivo que se ha seleccionado
-            dispositivo = inventarioController.getDispositivoSeleccionado();
-            dispositivo.setMarca(tfMarca.getText());
-            dispositivo.setModelo(tfModelo.getText());
-            dispositivo.setPrecio(Integer.parseInt(tfPrecio.getText()));
-            dispositivo.setFechaCompra(datePicker.getValue());
-            dispositivo.setTipoAtributo(cbTipoDispositivo.getValue());
+            Dispositivo dispositivo = getDispositivo();
+
+            if (!inventarioController.getListaDispositivos().contains(dispositivo)) {
+                inventarioController.addDispositivo(dispositivo);
+            } else {
+                inventarioController.updateDispositivo(dispositivo);
+                // Refresh the list view after updating a device
+                inventarioController.getListaDispositivos().set(inventarioController.getListaDispositivos().indexOf(dispositivo), dispositivo);
+            }
+
+            bt_Alta.getScene().getWindow().hide();
         }
 
 
-
-
-        if(!inventarioController.getListaDispositivos().contains(dispositivo)) {
-            inventarioController.addDispositivo(dispositivo);
-        } else{
-            inventarioController.updateDispositivo(dispositivo);
-        }
-
-        //se cierra la ventana
-        bt_Alta.getScene().getWindow().hide();
     }
+
+    private Dispositivo getDispositivo() {
+        Dispositivo dispositivo = inventarioController.getDispositivoSeleccionado();
+        if (dispositivo == null) {
+            dispositivo = new Dispositivo();
+            dispositivo.setId(String.valueOf(inventarioController.getListaDispositivos().size() + 1));
+        }
+        dispositivo.setMarca(tfMarca.getText());
+        dispositivo.setModelo(tfModelo.getText());
+        dispositivo.setPrecio(Integer.parseInt(tfPrecio.getText()));
+        dispositivo.setFechaCompra(datePicker.getValue());
+        dispositivo.setTipoAtributo(cbTipoDispositivo.getValue());
+        if (dispositivo.getId() == null) {
+            dispositivo.setId(String.valueOf(inventarioController.getListaDispositivos().size() + 1));
+        }
+        return dispositivo;
+    }
+
 
     public void setDispositivo(Dispositivo dispositivo) {
         tfMarca.setText(dispositivo.getMarca());
@@ -88,8 +97,6 @@ public class DispositivoController {
     public void setInventarioController(InventarioController inventarioController) {
         this.inventarioController = inventarioController;
     }
-
-
 
 
 }

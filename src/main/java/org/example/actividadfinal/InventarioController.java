@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.actividadfinal.models.Dispositivo;
 
@@ -39,8 +40,18 @@ public class InventarioController {
     @FXML
     private ListView<Dispositivo> lvDispositivos;
 
+    @FXML
+    private AnchorPane anchorPane;
+
     public InventarioController() {
 
+    }
+
+    @FXML
+    void initialize() {
+        anchorPane.setOnMouseClicked(event -> {
+            limpiar();
+        });
     }
 
     @FXML
@@ -90,12 +101,22 @@ public class InventarioController {
     }
 
     public void updateDispositivo(Dispositivo dispositivo) {
-        Dispositivo dispositivo1 =  lvDispositivos.getSelectionModel().getSelectedItem();
+        Dispositivo dispositivo1 = lvDispositivos.getSelectionModel().getSelectedItem();
         dispositivo1.setMarca(dispositivo.getMarca());
         dispositivo1.setModelo(dispositivo.getModelo());
         dispositivo1.setPrecio(dispositivo.getPrecio());
         dispositivo1.setFechaCompra(dispositivo.getFechaCompra());
         dispositivo1.setTipoAtributo(dispositivo.getTipoAtributo());
+
+    }
+
+    public void limpiar(){
+        lvDispositivos.getSelectionModel().clearSelection();
+        labelFecha.setText("");
+        labelMarca.setText("");
+        labelModelo.setText("");
+        labelPrecio.setText("");
+        labelTipoDispositivo.setText("");
 
     }
 
