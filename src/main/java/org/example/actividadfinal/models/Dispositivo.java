@@ -92,8 +92,12 @@ public class Dispositivo {
     }
 
 
-    public int compareFecha(Dispositivo dispositivo) {
-        return this.fechaCompra.compareTo(dispositivo.getFechaCompra());
+    public int compareFecha(Dispositivo dispositivo, boolean ascendente) {
+        if (ascendente) {
+            return this.fechaCompra.compareTo(dispositivo.getFechaCompra());
+        } else {
+            return dispositivo.getFechaCompra().compareTo(this.fechaCompra);
+        }
     }
 
     public int comparePrecio(Dispositivo dispositivo) {
