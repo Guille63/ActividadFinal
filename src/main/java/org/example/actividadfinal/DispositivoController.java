@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.actividadfinal.models.Dispositivo;
 
+/**
+ * Clase que controla la ventana de alta y modificación de dispositivos
+ */
 public class DispositivoController {
 
     @FXML
@@ -31,11 +34,20 @@ public class DispositivoController {
 
     }
 
+    /**
+     * Método que se ejecuta cuando se carga la ventana
+     * Se encarga de cargar los valores del ComboBox con los tipos de dispositivos
+     */
     @FXML
     public void initialize() {
         cbTipoDispositivo.getItems().setAll(TipoAtributo.values());
     }
 
+    /**
+     * Método que se ejecuta cuando el usuario hace click en el botón de alta o modificación
+     * si el dispositivo ya existe en la lista de dispositivos, se actualiza, si no, se añade.
+     * @param event
+     */
     @FXML
     void onAltaModificacionClick(ActionEvent event) {
         // Verificar si los campos están vacíos
@@ -68,6 +80,10 @@ public class DispositivoController {
 
     }
 
+    /**
+     * Método que obtiene los valores de los campos de texto y los almacena en un objeto Dispositivo
+     * @return Dispositivo
+     */
     private Dispositivo getDispositivo() {
         Dispositivo dispositivo = inventarioController.getDispositivoSeleccionado();
         if (dispositivo == null) {
@@ -86,6 +102,10 @@ public class DispositivoController {
     }
 
 
+    /**
+     * Método que establece los valores de los campos de texto con los valores del dispositivo seleccionado
+     * @param dispositivo
+     */
     public void setDispositivo(Dispositivo dispositivo) {
         tfMarca.setText(dispositivo.getMarca());
         tfModelo.setText(dispositivo.getModelo());
@@ -94,6 +114,10 @@ public class DispositivoController {
         cbTipoDispositivo.setValue(dispositivo.getTipoAtributo());
     }
 
+    /**
+     * Método que establece el controlador de inventario
+     * @param inventarioController
+     */
     public void setInventarioController(InventarioController inventarioController) {
         this.inventarioController = inventarioController;
     }
