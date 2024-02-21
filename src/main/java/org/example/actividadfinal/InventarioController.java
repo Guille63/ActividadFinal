@@ -22,6 +22,8 @@ import java.io.FileWriter;
 
 /**
  * Clase que controla la ventana de inventario
+ *
+ * @author Guillem Ruiz
  */
 public class InventarioController {
 
@@ -74,6 +76,7 @@ public class InventarioController {
     /**
      * Método que se ejecuta cuando el usuario hace click en un dispositivo de la lista
      * Muestra los datos del dispositivo seleccionado en las etiquetas
+     *
      * @param event
      */
     @FXML
@@ -89,6 +92,7 @@ public class InventarioController {
     /**
      * Método que se ejecuta cuando el usuario hace click en el botón de imprimir
      * Imprime el inventario en un fichero de texto
+     *
      * @param event
      */
     @FXML
@@ -113,6 +117,7 @@ public class InventarioController {
     /**
      * Método que se ejecuta cuando el usuario hace click en el botón add/edit
      * Abre la ventana de alta y modificación de dispositivos
+     *
      * @param event
      */
     @FXML
@@ -139,25 +144,13 @@ public class InventarioController {
 
     /**
      * Método que añade un dispositivo a la lista de dispositivos
+     *
      * @param dispositivo
      */
     public void addDispositivo(Dispositivo dispositivo) {
         lvDispositivos.getItems().add(dispositivo);
     }
 
-    /**
-     * Método que actualiza un dispositivo de la lista de dispositivos
-     * @param dispositivo
-     */
-    public void updateDispositivo(Dispositivo dispositivo) {
-        Dispositivo dispositivo1 = lvDispositivos.getSelectionModel().getSelectedItem();
-        dispositivo1.setMarca(dispositivo.getMarca());
-        dispositivo1.setModelo(dispositivo.getModelo());
-        dispositivo1.setPrecio(dispositivo.getPrecio());
-        dispositivo1.setFechaCompra(dispositivo.getFechaCompra());
-        dispositivo1.setTipoAtributo(dispositivo.getTipoAtributo());
-
-    }
 
     /**
      * Método que limpia los campos de texto
@@ -174,6 +167,7 @@ public class InventarioController {
 
     /**
      * Metodo que ordena la lista de dispositivos por fecha de compra de forma ascendente o descendente
+     *
      * @param event
      */
     @FXML
@@ -194,6 +188,7 @@ public class InventarioController {
 
     /**
      * Método que devuelve la lista de dispositivos
+     *
      * @return
      */
     public ObservableList<Dispositivo> getListaDispositivos() {
@@ -202,6 +197,7 @@ public class InventarioController {
 
     /**
      * Método que devuelve el dispositivo seleccionado
+     *
      * @return
      */
     public Dispositivo getDispositivoSeleccionado() {

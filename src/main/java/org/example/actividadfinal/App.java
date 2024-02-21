@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * Clase principal de la aplicación
+ * @author Guillem Ruiz
  */
 public class App extends Application {
     /**

@@ -3,9 +3,11 @@ package org.example.actividadfinal.models;
 import org.example.actividadfinal.TipoAtributo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Clase que representa un dispositivo
+ * @author Guillem Ruiz
  */
 public class Dispositivo {
     private String id;
@@ -17,12 +19,12 @@ public class Dispositivo {
 
     /**
      * Constructor de la clase
-     * @param id
-     * @param fechaCompra
-     * @param precio
-     * @param tipoAtributo
-     * @param marca
-     * @param modelo
+     * @param id id del dispositivo
+     * @param fechaCompra fecha de compra del dispositivo
+     * @param precio precio del dispositivo
+     * @param tipoAtributo tipo de dispositivo
+     * @param marca marca del dispositivo
+     * @param modelo modelo del dispositivo
      */
     public Dispositivo(String id, LocalDate fechaCompra, int precio, TipoAtributo tipoAtributo, String marca, String modelo) {
         this.id = id;
@@ -41,7 +43,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve el id del dispositivo
-     * @return
+     * @return id del dispositivo
      */
     public String getId() {
         return id;
@@ -57,7 +59,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve la fecha de compra del dispositivo
-     * @return
+     * @return fecha compra del dispositivo
      */
     public LocalDate getFechaCompra() {
         return fechaCompra;
@@ -73,7 +75,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve el precio del dispositivo
-     * @return
+     * @return precio del dispositivo
      */
     public int getPrecio() {
         return precio;
@@ -89,7 +91,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve el tipo de atributo del dispositivo
-     * @return
+     * @return tipo de dispositivo
      */
     public TipoAtributo getTipoAtributo() {
         return tipoAtributo;
@@ -105,7 +107,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve la marca del dispositivo
-     * @return
+     * @return marca del dispositivo
      */
     public String getMarca() {
         return marca;
@@ -121,7 +123,7 @@ public class Dispositivo {
 
     /**
      * Método que devuelve el modelo del dispositivo
-     * @return
+     * @return modelo del dispositivo
      */
     public String getModelo() {
         return modelo;
@@ -137,13 +139,24 @@ public class Dispositivo {
 
     /**
      * Método que devuelve el dispositivo en formato String
-     * @return
+     * @return string con los atributos del dispositivo
      */
     @Override
     public String toString() {
         return id + ": " + tipoAtributo + ", " + marca + ", " + modelo + ", " + fechaCompra + ", " + precio + "€";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dispositivo that)) return false;
+        return getPrecio() == that.getPrecio() && Objects.equals(getId(), that.getId()) && Objects.equals(getFechaCompra(), that.getFechaCompra()) && getTipoAtributo() == that.getTipoAtributo() && Objects.equals(getMarca(), that.getMarca()) && Objects.equals(getModelo(), that.getModelo());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFechaCompra(), getPrecio(), getTipoAtributo(), getMarca(), getModelo());
+    }
 
     /**
      * Compara dos dispositivos por su fecha de compra

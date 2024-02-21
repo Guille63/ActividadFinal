@@ -4,9 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.actividadfinal.models.Dispositivo;
+import org.example.actividadfinal.models.Inventario;
 
 /**
  * Clase que controla la ventana de alta y modificación de dispositivos
+ * @author Guillem Ruiz
  */
 public class DispositivoController {
 
@@ -66,13 +68,11 @@ public class DispositivoController {
         } else {
             Dispositivo dispositivo = getDispositivo();
 
-            if (!inventarioController.getListaDispositivos().contains(dispositivo)) {
-                inventarioController.addDispositivo(dispositivo);
-            } else {
-                inventarioController.updateDispositivo(dispositivo);
-                // Refresh the list view after updating a device
-                inventarioController.getListaDispositivos().set(inventarioController.getListaDispositivos().indexOf(dispositivo), dispositivo);
-            }
+            Inventario inventario = new Inventario(inventarioController.getListaDispositivos());
+            inventario.altaDispositivo(dispositivo);
+
+            inventarioController.getListaDispositivos().setAll(inventario.getDispositivos());
+
 
             bt_Alta.getScene().getWindow().hide();
         }
